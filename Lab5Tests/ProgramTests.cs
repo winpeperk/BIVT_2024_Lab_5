@@ -191,8 +191,8 @@ namespace Tests
             Array.Copy(matrix3x5, B, B.LongLength);
             Array.Copy(matrix5x6, answerA, answerA.LongLength);
             Array.Copy(matrix3x5, answerB, answerB.LongLength);
-            int temp = answerB[2, 4];
-            answerB[2, 4] = answerA[2, 4];
+            int temp = answerB[2, 3];
+            answerB[2, 3] = answerA[2, 4];
             answerA[2, 4] = temp;
             // Act
             main.Task_2_1(A, B);
