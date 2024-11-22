@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Numerics;
 using System.Reflection;
 using System.Reflection.Metadata;
+using System.Text;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 public class Program
@@ -25,18 +26,21 @@ public class Program
 
         return answer;
     }
-    public double Task_1_2(double[] first, double[] second)
+    
+    public int Task_1_2(double[] first, double[] second)
     {
-        double answer = 0;
+        int answer = 0;
 
         // code here
 
         // create and use GeronArea(a, b, c);
+        // first = 1, second = 2, equal = 0, error = -1
 
         // end
 
         return answer;
     }
+
     public int Task_1_3a(double v1, double a1, double v2, double a2, int time)
     {
         int answer = 0;
@@ -44,11 +48,13 @@ public class Program
         // code here
 
         // create and use GetDistance(v, a, t); t - hours
+        // first = 1, second = 2, equal = 0
 
         // end
 
         return answer;
     }
+
     public int Task_1_3b(double v1, double a1, double v2, double a2)
     {
         int answer = 0;
@@ -72,6 +78,7 @@ public class Program
 
         // end
     }
+
     public void Task_2_2(double[] A, double[] B)
     {
         // code here
@@ -80,7 +87,8 @@ public class Program
 
         // end
     }
-    public void Task_2_3(int[,] B, int[,] C)
+
+    public void Task_2_3(ref int[,] B, ref int[,] C)
     {
         // code here
 
@@ -88,6 +96,7 @@ public class Program
 
         // end
     }
+
     public void Task_2_4(int[,] A, int[,] B)
     {
         // code here
@@ -97,6 +106,7 @@ public class Program
 
         // end
     }
+
     public void Task_2_5(int[,] A, int[,] B)
     {
         // code here
@@ -105,7 +115,8 @@ public class Program
 
         // end
     }
-    public void Task_2_6(int[] A, int[] B)
+
+    public void Task_2_6(ref int[] A, int[] B)
     {
         // code here
 
@@ -113,7 +124,8 @@ public class Program
 
         // end
     }
-    public void Task_2_7(int[,] B, int[,] C)
+
+    public void Task_2_7(ref int[,] B, int[,] C)
     {
         // code here
 
@@ -122,6 +134,7 @@ public class Program
 
         // end
     }
+
     public void Task_2_8(int[] A, int[] B)
     {
         // code here
@@ -130,6 +143,7 @@ public class Program
 
         // end
     }
+
     public int[] Task_2_9(int[,] A, int[,] C)
     {
         int[] answer = default(int[]);
@@ -142,7 +156,8 @@ public class Program
 
         return answer;
     }
-    public void Task_2_10(int[,] matrix)
+
+    public void Task_2_10(ref int[,] matrix)
     {
         // code here
 
@@ -150,6 +165,7 @@ public class Program
 
         // end
     }
+
     public void Task_2_11(int[,] A, int[,] B)
     {
         // code here
@@ -166,7 +182,8 @@ public class Program
 
         // end
     }
-    public void Task_2_13(int[,] matrix)
+
+    public void Task_2_13(ref int[,] matrix)
     {
         // code here
 
@@ -174,6 +191,7 @@ public class Program
 
         // end
     }
+    
     public void Task_2_14(int[,] matrix)
     {
         // code here
@@ -182,6 +200,7 @@ public class Program
 
         // end
     }
+    
     public int Task_2_15(int[,] A, int[,] B, int[,] C)
     {
         int answer = 0; // 1 - increasing   0 - no sequence   -1 - decreasing
@@ -193,7 +212,8 @@ public class Program
         // end
 
         return answer;
-    }
+    }    
+
     public void Task_2_16(int[] A, int[] B)
     {
         // code here
@@ -202,6 +222,7 @@ public class Program
 
         // end
     }
+
     public void Task_2_17(int[,] A, int[,] B)
     {
         // code here
@@ -210,6 +231,7 @@ public class Program
 
         // end
     }
+
     public void Task_2_18(int[,] A, int[,] B)
     {
         // code here
@@ -219,7 +241,7 @@ public class Program
         // end
     }
 
-    public void Task_2_19(int[,] matrix)
+    public void Task_2_19(ref int[,] matrix)
     {
         // code here
 
@@ -227,31 +249,31 @@ public class Program
 
         // end
     }
-    public void Task_2_20(int[,] A, int[,] B)
+    public void Task_2_20(ref int[,] A, ref int[,] B)
     {
         // code here
 
         // use RemoveColumn(matrix, columnIndex); from 2_10
 
         // end
-    }
-    public (int[], int[]) Task_2_21(int[,] A, int[,] B)
+    }    
+
+    public void Task_2_21(int[,] A, int[,] B, out int[] answerA, out int[] answerB)
     {
-        int[] answerA = default(int[]);
-        int[] answerB = default(int[]);
+        answerA = null;
+        answerB = null;
 
         // code here
 
         // create and use CreateArrayFromMins(matrix);
 
         // end
-
-        return (answerA, answerB);
     }
-    public (int[], int[]) Task_2_22(int[,] matrix)
+
+    public void Task_2_22(int[,] matrix, out int[] rows, out int[] cols)
     {
-        int[] rows = default(int[]);
-        int[] cols = default(int[]);
+        rows = null;
+        cols = null;
 
         // code here
 
@@ -259,9 +281,8 @@ public class Program
         // create and use GetMaxNegativePerColumn(matrix);
 
         // end
-
-        return (rows, cols);
     }
+
     public void Task_2_23(double[,] A, double[,] B)
     {
         // code here
@@ -270,6 +291,7 @@ public class Program
 
         // end
     }
+
     public void Task_2_24(int[,] A, int[,] B)
     {
         // code here
@@ -278,8 +300,12 @@ public class Program
 
         // end
     }
-    public void Task_2_25(int[,] A, int[,] B)
+
+    public void Task_2_25(int[,] A, int[,] B, out int maxA, out int maxB)
     {
+        maxA = 0;
+        maxB = 0;
+
         // code here
 
         // create and use FindMaxNegativeRow(int);
@@ -287,81 +313,70 @@ public class Program
 
         // end
     }
+
     public void Task_2_26(int[,] A, int[,] B)
     {
         // code here
 
         // use GetNegativeCountPerRow(matrix); from 2_22
-        // use FindMax(array); from 2_2
+        // create and use FindMaxIndex(array);
 
         // end
     }
+
     public void Task_2_27(int[,] A, int[,] B)
     {
         // code here
-
-        // create and use ReplaceMaxElementOdd(matrix);
-        // create and use ReplaceMaxElementEven(matrix);
+        // create and use FindRowMaxIndex(matrix)
+        // create and use ReplaceMaxElementOdd(matrix, row, column);
+        // create and use ReplaceMaxElementEven(matrix, row, column);
 
         // end
     }
-    public (int, int) Task_2_28a(int[,] first, int[,] second, int A, int B)
-    {
-        int answerFirst = 0, answerSecond = 0;
 
+    public void Task_2_28a(int[] first, int[] second, ref int answerFirst, ref int answerSecond)
+    {
         // code here
 
-        // create and use FindSequence(array);
+        // create and use FindSequence(array, A, B); // 1 - increasing, 0 - no sequence,  -1 - decreasing
 
         // end
-
-        return (answerFirst, answerSecond);
     }
-    public int[,] Task_2_28b(int[,] first, int[,] second)
-    {
-        int[,] answer = default(int[,]);
 
+    public void Task_2_28b(int[] first, int[] second, ref int[,] answerFirst, ref int[,] answerSecond)
+    {
         // code here
 
-        // create and use FindSequence(array);
+        // use FindSequence(array, A, B); from Task_2_28a or entirely Task_2_28a
 
         // end
-
-        return answer;
     }
-    public int[,] Task_2_28c(int[,] first, int[,] second, int A, int B)
-    {
-        int[,] answer = default(int[,]);
 
+    public void Task_2_28c(int[] first, int[] second, ref int[] answerFirst, ref int[] answerSecond)
+    {
         // code here
 
-        // create and use FindSequence(array);
+        // use FindSequence(array, A, B); from Task_2_28a or entirely Task_2_28a or Task_2_28b
 
         // end
-
-        return answer;
     }
     #endregion
-    #region Level 3
-    public (double[,], double[,]) Task_3_1(double a, double b, double h)
-    {
-        double[,] firstSumAndY = default(double[,]);
-        double[,] secondSumAndY = default(double[,]);
 
+    #region Level 3
+    public void Task_3_1(ref double[,] firstSumAndY, ref double[,] secondSumAndY)
+    {
         // code here
 
-        // create and use public delegate SumFunction(x) and public delegate YFunction(x)
+        // create and use public delegate SumFunction(x, a, b, h) and public delegate YFunction(x, a, b, h)
         // create and use method GetSumAndY(sFunction, yFunction, a, b, h);
         // create and use 2 methods for both functions
 
         // end
-
-        return (firstSumAndY, secondSumAndY);
     }
+
     public void Task_3_2(int[,] matrix)
     {
-        // Uncomment this:
-        // SortRowStyle sortStyle = default(SortRowStyle);
+        // SortRowStyle sortStyle = default(SortRowStyle); - uncomment me
 
         // code here
 
@@ -371,11 +386,11 @@ public class Program
 
         // end
     }
+
     public double Task_3_3(double[] array)
     {
         double answer = 0;
-        // Uncomment this:
-        // SwapDirection swapper = default(SwapDirection);
+        // SwapDirection swapper = default(SwapDirection); - uncomment me
 
         // code here
 
@@ -387,35 +402,37 @@ public class Program
 
         return answer;
     }
-    public double Task_3_4(double[,] matrix, bool isUpperTriangle)
+
+    public int Task_3_4(int[,] matrix, bool isUpperTriangle)
     {
-        double answer = 0;
+        int answer = 0;
 
         // code here
 
         // create and use public delegate GetTriangle(matrix);
         // create and use methods GetUpperTriange(array) and GetLowerTriange(array)
         // and GetSum(GetTriangle, matrix)
-        // use method GetSum(array) from Task_3_3
+        // create and use method GetSum(array) similar to GetSum in Task_3_3
 
         // end
 
         return answer;
     }
-    public int Task_3_5(int functionNumber, double a, double b, double h)
+
+    public void Task_3_5(out int func1, out int func2)
     {
-        int answer = 0;
+        func1 = 0;
+        func2 = 0;
 
         // code here
 
-        // use public delegate YFunction(x) from Task_3_1
+        // use public delegate YFunction(x, a, b, h) from Task_3_1
         // create and use method CountSignFlips(YFunction, a, b, h);
         // create and use 2 methods for both functions
 
         // end
-
-        return answer;
     }
+
     public void Task_3_6(int[,] matrix)
     {
         // code here
@@ -427,10 +444,9 @@ public class Program
 
         // end
     }
-    public int[,] Task_3_7(int[,] B, int[,] C, int n)
-    {
-        int[,] answer = default(int[,]);
 
+    public void Task_3_7(ref int[,] B, int[,] C)
+    {
         // code here
 
         // create and use public delegate CountPositive(matrix, index);
@@ -438,13 +454,11 @@ public class Program
         // use CountColumnPositive(matrix, colIndex) from Task_2_7
 
         // end
-
-        return answer;
     }
-    public void Task_3_10(int[,] matrix)
+
+    public void Task_3_10(ref int[,] matrix)
     {
-        // Uncomment this:
-        // FindIndex searchArea = default(FindIndex);
+        // FindIndex searchArea = default(FindIndex); - uncomment me
 
         // code here
 
@@ -456,7 +470,8 @@ public class Program
 
         // end
     }
-    public void Task_3_13(int[,] matrix)
+
+    public void Task_3_13(ref int[,] matrix)
     {
         // code here
 
@@ -466,22 +481,22 @@ public class Program
         // end
     }
 
-    // Uncomment this:
-    /*public (int[], int[]) Task_3_22(int[,] matrix)
+    public void Task_3_22(int[,] matrix, out int[] rows, out int[] cols)
     {
-        GetNegativeArray searcherRows = default(GetNegativeArray);
-        GetNegativeArray searcherCols = default(GetNegativeArray);
+
+        rows = null;
+        cols = null;
 
         // code here
 
         // create and use public delegate GetNegativeArray(matrix);
         // use GetNegativeCountPerRow(matrix) from Task_2_22
         // use GetMaxNegativePerColumn(matrix) from Task_2_22
+        // create and use method FindNegatives(matrix, searcherRows, searcherCols, out rows, out cols);
 
         // end
+    }
 
-        return (searcherRows(matrix), searcherCols(matrix));
-    }*/
     public void Task_3_27(int[,] A, int[,] B)
     {
         // code here
@@ -493,29 +508,36 @@ public class Program
 
         // end
     }
-    public int[,] Task_3_28c(int[,] first, int[,] second, int A, int B)
-    {
-        int[,] answer = default(int[,]);
-        // increasingFirstLeft, increasingFirstRight
-        // decreasingFirstLeft, decreasingFirstRight
-        // increasingSecondLeft, increasingSecondRight
-        // decreasingSecondLeft, decreasingSecondRight
 
+    public void Task_3_28a(int[] first, int[] second, ref int answerFirst, ref int answerSecond)
+    {
         // code here
 
-        // create public delegate IsSequence(array);
-        // create and use method FindIncreasingSequence(array); similar to FindSequence(array) in Task_2_28
-        // create and use method FindDecreasingSequence(array); similar to FindSequence(array) in Task_2_28
-        // create and use method FindMaxSequenceBounds(matrix, isSequence);
+        // create public delegate IsSequence(array, left, right);
+        // create and use method FindIncreasingSequence(array, A, B); similar to FindSequence(array, A, B) in Task_2_28a
+        // create and use method FindDecreasingSequence(array, A, B); similar to FindSequence(array, A, B) in Task_2_28a
+        // create and use method DefineSequence(array, findIncreasingSequence, findDecreasingSequence);
 
         // end
+    }
 
-        return answer;
+    public void Task_3_28c(int[] first, int[] second, ref int[] answerFirstIncrease, ref int[] answerFirstDecrease, ref int[] answerSecondIncrease, ref int[] answerSecondDecrease)
+    {
+        // code here
+
+        // create public delegate IsSequence(array, left, right);
+        // use method FindIncreasingSequence(array, A, B); from Task_3_28a
+        // use method FindDecreasingSequence(array, A, B); from Task_3_28a
+        // create and use method FindLongestSequence(array, sequence);
+
+        // end
     }
     #endregion
     #region bonus part
-    public void Task_4(double[,] matrix, int[] number)
+    public void Task_4(double[,] matrix, int index)
     {
+        // MatrixConverter[] mc = new MatrixConverter[3]; - uncomment me
+
         // code here
 
         // create public delegate MatrixConverter(matrix);
