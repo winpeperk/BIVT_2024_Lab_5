@@ -85,39 +85,18 @@ namespace Tests
         double[] array9 = new double[] { 1, 12, 3, 4, 5, -6, 7, 0, 9 };
 
         [TestMethod()]
-        public void Task_4Test()
-        {
-            double[,] matrix = {
-            {2, 1, -1},
-            {1, -1, 1},
-            {-1, 1, 2}};
-            double[,] matrix2 = {
-            {5, 1, 2, 1},
-            {1, 6, 2, 3},
-            {2, 2, 7, 2},
-            {1, 3, 2, 8}};
-            double[,] matrix3 = {
-            {1, 2, 3, 4, 5},
-            {6, 7, 8, 9, 10},
-            {11, 12, 13, 14, 15},
-            {16, 17, 18, 19, 20},
-            {21, 22, 23, 24, 25}};
-
-            main.Task_4(matrix, new int[] { 12, 13, 14 });
-        }
-
-        [TestMethod()]
         public void Task_1_1Test()
         {
             // Arrange
             var rand = new Random();
-            int n = rand.Next(-1, 10);
+            int n = rand.Next(-1, 7);
             int k = rand.Next(-1, 5);
             int diff = n - k;
             long actual, expected = 1;
             // Act
             actual = main.Task_1_1(n, k);
-            if (k > 0 && k < n)
+            if (k == 0 || k == n) expected = 1;
+            else if (k > 0 && k < n)
             {
                 do
                     expected *= n;
@@ -371,7 +350,7 @@ namespace Tests
             // Arrange
             int[] A = new int[7], B = new int[8];
             int[] C = new int[7], D = new int[8];
-            int[] answerAB = new int[13] { 1, 2, 4, -5, 6, 7, 1, -3, 5, -5, 1, 0, 4 }, answerCD = new int[13];
+            int[] answerAB = new int[13] { 1, 2, 4, -5, 6, 7, 1, -3, 5, 5, 1, 0, 4 }, answerCD = new int[13];
             Array.Copy(arr7, A, A.Length);
             Array.Copy(arr8, B, B.Length);
             var rand = new Random();
@@ -840,7 +819,7 @@ namespace Tests
             // Arrange
             int[] A = new int[8], B = new int[10];
             int[] C = new int[8], D = new int[10];
-            int[] answerA = new int[] { 1, 8, -3, 5, -5, 1, 0, 4 };
+            int[] answerA = new int[] { 1, 8, -3, 5, 5, 1, 0, 4 };
             int[] answerB = new int[] { 1, -1, -3, 5, -4, 1, 0, -5, -8, 2 };
             int[] answerC = new int[8], answerD = new int[10];
             Array.Copy(arr8, A, A.Length);
@@ -1296,7 +1275,7 @@ namespace Tests
             Array.Copy(arr7b, B, B.Length);
             Array.Copy(arr6, C, C.Length);
             Array.Copy(arr6b, D, D.Length);
-            int[] answerA = new int[2] {0,2}, answerB = new int[2] { 0, 6 }, answerC = new int[2] {1,4}, answerD = new int[2] { 0, 5 },
+            int[] answerA = new int[2] { 0, 2 }, answerB = new int[2] { 0, 6 }, answerC = new int[2] { 1, 4 }, answerD = new int[2] { 0, 5 },
                 resultA = null, resultB = null, resultC = null, resultD = null;
             // Act
             main.Task_2_28c(A, B, ref resultA, ref resultB);
@@ -1315,5 +1294,496 @@ namespace Tests
             for (int i = 0; i < answerD.Length; i++)
                 Assert.AreEqual(answerD[i], resultD[i]);
         }
+
+        [TestMethod()]
+        public void Task_3_1Test()
+        {
+            double[,] answerA = new double[10, 2] {
+                { 2.691248985686179, 2.691268139166703 },
+                { 2.612188250758326, 2.6122204929844544 },
+                { 2.486877948066567, 2.486856868603152 },
+                { 2.3239116638734316, 2.3238842457941966 },
+                { 2.133946805639821, 2.133930111437405 },
+                { 1.9284273029461472, 1.9283342378052784 },
+                { 1.7179407535719313, 1.7179999609519054 },
+                { 1.5124407582589756, 1.5124670047163078 },
+                { 1.3192885674454282, 1.3193027107322826 },
+                { 1.1438419924605645, 1.1438356437916406 } },
+            answerB = new double[21, 2] {
+                { -0.7238669986035898, -0.7237709894132196 },
+                { -0.6800294442208453, -0.6803447300484264 },
+                { -0.6288481110204656, -0.6290227871627618 },
+                { -0.5696189001753262, -0.5698051607562258 },
+                { -0.502415222304551, -0.5026918508288181 },
+                { -0.4278435589203152, -0.427682857380539 },
+                { -0.34443026987495795, -0.34477818041138847 },
+                { -0.25471794631816486, -0.2539778199213665 },
+                { -0.15454959244621724, -0.15528177591047287 },
+                { -0.04810703315931994, -0.04869004837870794 },
+                { 0.06595397252545775, 0.06579736267392855 },
+                { 0.18738245716549815, 0.1881804572474367 },
+                { 0.3177351886901729, 0.3184592353418164 },
+                { 0.45569126052265907, 0.45663369695706757 },
+                { 0.6043531113374438, 0.6027038420931904 },
+                { 0.7562775769271242, 0.7566696707501847 },
+                { 0.9208780246049812, 0.9185311829280504 },
+                { 1.0853866065595277, 1.0882883786267876 },
+                { 1.2696395428461231, 1.2659412578463964 },
+                { 1.4468099697676662, 1.4514898205868763 },
+                { 1.6348839001848923, 1.6449340668482284 }  },
+                resultA = null, resultB = null;
+            // Act
+            main.Task_3_1(ref resultA, ref resultB);
+            // Assert
+            Assert.AreEqual(answerA.GetLength(0), resultA.GetLength(0));
+            Assert.AreEqual(answerA.GetLength(1), resultA.GetLength(1));
+            Assert.AreEqual(answerB.GetLength(0), resultB.GetLength(0));
+            Assert.AreEqual(answerB.GetLength(1), resultB.GetLength(1));
+            for (int i = 0; i < answerA.GetLength(0); i++)
+                for (int j = 0; j < answerA.GetLength(1); j++)
+                    Assert.AreEqual(answerA[i, j], resultA[i, j], 0.00005);
+            for (int i = 0; i < answerB.GetLength(0); i++)
+                for (int j = 0; j < answerB.GetLength(1); j++)
+                    Assert.AreEqual(answerB[i, j], resultB[i, j], 0.00005);
+        }
+
+        [TestMethod()]
+        public void Task_3_2Test()
+        {
+            // Arrange
+            int[,] B = new int[4, 5], C = new int[5, 6];
+            int[,] answerB = new int[4, 5] {
+            { 1, 2, 3, 4, 5 },
+            { 10, 9, 8, 7, 6 },
+            { -15, -11, 12, 13, 14 },
+            { 9, 8, 7, 6, 0 }};
+            int[,] answerC = new int[5, 6] {
+            { -1, 1, 2, 3, 4, 5 },
+            { 10, 9, 8, 7, 6, -2 },
+            { -3, 11, 12, 13, 14, 15 },
+            { -1, -1, -2, -3, -4, -5 },
+            { -2, 0, 6, 7, 8, 9 }};
+            Array.Copy(matrix4x5, B, B.LongLength);
+            Array.Copy(matrix5x6, C, C.LongLength);
+            // Act
+            main.Task_3_2(B);
+            main.Task_3_2(C);
+            // Assert
+            Assert.AreEqual(answerB.GetLength(0), B.GetLength(0));
+            Assert.AreEqual(answerB.GetLength(1), B.GetLength(1));
+            Assert.AreEqual(answerC.GetLength(0), C.GetLength(0));
+            Assert.AreEqual(answerC.GetLength(1), C.GetLength(1));
+            for (int i = 0; i < B.GetLength(0); i++)
+                for (int j = 0; j < B.GetLength(1); j++)
+                    Assert.AreEqual(answerB[i, j], B[i, j]);
+            for (int i = 0; i < C.GetLength(0); i++)
+                for (int j = 0; j < C.GetLength(1); j++)
+                    Assert.AreEqual(C[i, j], answerC[i, j]);
+        }
+
+        [TestMethod()]
+        public void Task_3_3Test()
+        {
+            // Arrange
+            double[] A = new double[8], B = new double[9];
+            double[] answerA = new double[] { 8, 1, 5, -3, 1, -5, 4, 0 };
+            double[] answerB = new double[] { 1, 3, 12, 5, 4, 7, -6, 9, 0 };
+            double ansSumA = -7, ansSumB = 24, resSumA, resSumB;
+            Array.Copy(array8, A, A.Length);
+            Array.Copy(array9, B, B.Length);
+            // Act
+            resSumA = main.Task_3_3(A);
+            resSumB = main.Task_3_3(B);
+            // Assert
+            Assert.AreEqual(answerA.Length, A.Length);
+            Assert.AreEqual(answerB.Length, B.Length);
+            Assert.AreEqual(ansSumA, resSumA);
+            Assert.AreEqual(ansSumB, resSumB);
+            for (int i = 0; i < A.Length; i++)
+                Assert.AreEqual(A[i], answerA[i]);
+            for (int i = 0; i < B.Length; i++)
+                Assert.AreEqual(B[i], answerB[i]);
+        }
+
+        [TestMethod()]
+        public void Task_3_4Test()
+        {
+            // Arrange
+            int[,] A = new int[5, 5], B = new int[6, 6];
+            Array.Copy(matrix5x5, A, A.LongLength);
+            Array.Copy(matrix6x6, B, B.LongLength);
+            int answerAu = 45, answerAl = 40, answerBu = 44, answerBl = 49;
+            int resultAu = 0, resultAl = 0, resultBu = 0, resultBl = 0;
+            // Act
+            resultAu = main.Task_3_4(A, true);
+            resultAl = main.Task_3_4(A, false);
+            resultBu = main.Task_3_4(B, true);
+            resultBl = main.Task_3_4(B, false);
+            // Assert
+            Assert.AreEqual(answerAu, resultAu);
+            Assert.AreEqual(answerAl, resultAl);
+            Assert.AreEqual(answerBu, resultBu);
+            Assert.AreEqual(answerBl, resultBl);
+        }
+
+        [TestMethod()]
+        public void Task_3_5Test()
+        {
+            // Arrange
+            int answerA = 2, answerB = 1;
+            // Act
+            main.Task_3_5(out int resultA, out int resultB);
+            // Assert
+            Assert.AreEqual(answerA, resultA);
+            Assert.AreEqual(answerB, resultB);
+        }
+
+        [TestMethod()]
+        public void Task_3_6Test()
+        {
+            // Arrange
+            int[,] A = new int[5, 5], B = new int[6, 6];
+            int[,] answerA = new int[5, 5] {
+            { 1, 2, 5, 4, 3 },
+            { 6, 7, 10, 9, 8 },
+            { 11, 12, 15, 14, 13 },
+            { -1, -2, -5, -4, -3 },
+            { 6, 7, 0, 9, 8 }};
+            int[,] answerB = new int[6, 6] {
+            { 1,    2,  3,  4,  5,  -1 },
+            { 6,    7,  8,  9,  10, -2 },
+            { 11,   12, 13, 14, 15, -3 },
+            { -1,   -2, -3, -4, -5, -1 },
+            { 6,    7,  8,  9,  20, -2 },
+            { 1,    3,  3,  1,  5, 5 }};
+            Array.Copy(matrix5x5, A, A.LongLength);
+            Array.Copy(matrix6x6, B, B.LongLength);
+            // Act
+            main.Task_3_6(A);
+            main.Task_3_6(B);
+            // Assert
+            Assert.AreEqual(answerA.GetLength(0), A.GetLength(0));
+            Assert.AreEqual(answerA.GetLength(1), A.GetLength(1));
+            Assert.AreEqual(answerB.GetLength(0), B.GetLength(0));
+            Assert.AreEqual(answerB.GetLength(1), B.GetLength(1));
+            for (int i = 0; i < A.GetLength(0); i++)
+                for (int j = 0; j < A.GetLength(1); j++)
+                    Assert.AreEqual(answerA[i, j], A[i, j]);
+            for (int i = 0; i < B.GetLength(0); i++)
+                for (int j = 0; j < B.GetLength(1); j++)
+                    Assert.AreEqual(answerB[i, j], B[i, j]);
+        }
+
+        [TestMethod()]
+        public void Task_3_7Test()
+        {
+            // Arrange
+            int[,] B = new int[4, 5], C = new int[5, 6];
+            int[,] answerB = new int[5, 5] {
+            { 1, 2, 3, 4, 5 },
+            { 1, 6, 11, -1, 6 },
+            { 6, 7, 8, 9, 10 },
+            { -11, 12, 13, 14, -15 },
+            { 6, 7, 8, 9, 0 }};
+            int[,] answerC = new int[5, 6] {
+            { 1, 2, 3, 4, 5, -1 },
+            { 6, 7, 8, 9, 10, -2 },
+            { 11, 12, 13, 14, 15, -3 },
+            { -1, -2, -3, -4, -5, -1 },
+            { 6, 7, 8, 9, 0, -2 }};
+            Array.Copy(matrix4x5, B, B.LongLength);
+            Array.Copy(matrix5x6, C, C.LongLength);
+            // Act
+            main.Task_3_7(ref B, C);
+            // Assert
+            Assert.AreEqual(answerB.GetLength(0), B.GetLength(0));
+            Assert.AreEqual(answerB.GetLength(1), B.GetLength(1));
+            Assert.AreEqual(answerC.GetLength(0), C.GetLength(0));
+            Assert.AreEqual(answerC.GetLength(1), C.GetLength(1));
+            for (int i = 0; i < B.GetLength(0); i++)
+                for (int j = 0; j < B.GetLength(1); j++)
+                    Assert.AreEqual(answerB[i, j], B[i, j]);
+            for (int i = 0; i < C.GetLength(0); i++)
+                for (int j = 0; j < C.GetLength(1); j++)
+                    Assert.AreEqual(C[i, j], answerC[i, j]);
+        }
+
+        [TestMethod()]
+        public void Task_3_10Test()
+        {
+            // Arrange
+            int[,] A = new int[5, 5], B = new int[6, 6];
+            int[,] answerA = new int[5, 3] {
+            { 1, 2, 4 },
+            { 6, 7, 9 },
+            { 11, 12, 14 },
+            { -1, -2,  -4 },
+            { 6, 7, 9 }};
+            int[,] answerB = new int[6, 5]  {
+            { 1, 2, 3, 4, -1 },
+            { 6, 7, 8, 9, -2 },
+            { 11, 12, 13, 14, -3 },
+            { -1, -2, -3, -4, -1 },
+            { 6, 7, 8, 9, -2 },
+            { 1, 3, 3, 1,5 }};
+            Array.Copy(matrix5x5, A, A.LongLength);
+            Array.Copy(matrix6x6, B, B.LongLength);
+            // Act
+            main.Task_3_10(ref A);
+            main.Task_3_10(ref B);
+            // Assert
+            Assert.AreEqual(answerA.GetLength(0), A.GetLength(0));
+            Assert.AreEqual(answerA.GetLength(1), A.GetLength(1));
+            Assert.AreEqual(answerB.GetLength(0), B.GetLength(0));
+            Assert.AreEqual(answerB.GetLength(1), B.GetLength(1));
+            for (int i = 0; i < A.GetLength(0); i++)
+                for (int j = 0; j < A.GetLength(1); j++)
+                    Assert.AreEqual(answerA[i, j], A[i, j]);
+            for (int i = 0; i < B.GetLength(0); i++)
+                for (int j = 0; j < B.GetLength(1); j++)
+                    Assert.AreEqual(answerB[i, j], B[i, j]);
+        }
+
+        [TestMethod()]
+        public void Task_3_13Test()
+        {
+            // Arrange
+            int[,] A = new int[5, 5], B = new int[4, 5];
+            int[,] answerA = new int[3, 5] {
+            { 1, 2, 3, 4, 5 },
+            { 6, 7, 8, 9, 10 },
+            { 6, 7, 8, 9, 0 }};
+            int[,] answerB = new int[3, 5]  {
+            { 1, 2, 3, 4, 5 },
+            { 6, 7, 8, 9, 10 },
+            { 6, 7, 8, 9, 0 }};
+            Array.Copy(matrix5x5, A, A.LongLength);
+            Array.Copy(matrix4x5, B, B.LongLength);
+            // Act
+            main.Task_3_13(ref A);
+            main.Task_3_13(ref B);
+            // Assert
+            Assert.AreEqual(answerA.GetLength(0), A.GetLength(0));
+            Assert.AreEqual(answerA.GetLength(1), A.GetLength(1));
+            Assert.AreEqual(answerB.GetLength(0), B.GetLength(0));
+            Assert.AreEqual(answerB.GetLength(1), B.GetLength(1));
+            for (int i = 0; i < A.GetLength(0); i++)
+                for (int j = 0; j < A.GetLength(1); j++)
+                    Assert.AreEqual(answerA[i, j], A[i, j]);
+            for (int i = 0; i < B.GetLength(0); i++)
+                for (int j = 0; j < B.GetLength(1); j++)
+                    Assert.AreEqual(answerB[i, j], B[i, j]);
+        }
+
+        [TestMethod()]
+        public void Task_3_22Test()
+        {
+            // Arrange
+            int[,] A = new int[4, 4], B = new int[6, 6];
+            Array.Copy(matrix4x4, A, A.LongLength);
+            Array.Copy(matrix6x6, B, B.LongLength);
+            int[] rowsA = new int[4] { 0, 2, 0, 3 }, rowsB = new int[6] { 1, 1, 1, 6, 1, 0 };
+            int[] colsA = new int[4] { -6, -5, -8, -5 }, colsB = new int[6] { -1, -2, -3, -4, -5, -1 };
+            // Act
+            main.Task_3_22(A, out int[] resRowsA, out int[] resColsA);
+            main.Task_3_22(B, out int[] resRowsB, out int[] resColsB);
+            // Assert
+            Assert.AreEqual(rowsA.Length, resRowsA.Length);
+            Assert.AreEqual(colsA.Length, resColsA.Length);
+            Assert.AreEqual(rowsB.Length, resRowsB.Length);
+            Assert.AreEqual(colsB.Length, resColsB.Length);
+            for (int i = 0; i < rowsA.Length; i++)
+                Assert.AreEqual(rowsA[i], resRowsA[i]);
+            for (int i = 0; i < colsA.Length; i++)
+                Assert.AreEqual(colsA[i], resColsA[i]);
+            for (int i = 0; i < rowsB.Length; i++)
+                Assert.AreEqual(rowsB[i], resRowsB[i]);
+            for (int i = 0; i < colsB.Length; i++)
+                Assert.AreEqual(colsB[i], resColsB[i]);
+        }
+
+        [TestMethod()]
+        public void Task_3_27Test()
+        {
+            // Arrange
+            int[,] A = new int[5, 5], B = new int[6, 6];
+            int[,] answerA = new int[5, 5] {
+            { 1, 2, 3, 4, 25 },
+            { 6, 7, 8, 9, 0 },
+            { 11, 12, 13, 14, 75 },
+            { 0, -2, -3, -4, -5 },
+            { 6, 7, 8, 36, 0 }};
+            int[,] answerB = new int[6, 6] {
+            { 1,    2,  3,  4,  25,  -1 },
+            { 6,    7,  8,  9,  0, -2 },
+            { 11,   12, 13, 14, 75, -3 },
+            { 0,   -2, -3, -4, -5, -1 },
+            { 6,    7,  8,  9,  100, -2 },
+            { 1,    3,  3,  1,  0, 5 }};
+            Array.Copy(matrix5x5, A, A.LongLength);
+            Array.Copy(matrix6x6, B, B.LongLength);
+            // Act
+            main.Task_3_27(A, B);
+            // Assert
+            Assert.AreEqual(answerA.GetLength(0), A.GetLength(0));
+            Assert.AreEqual(answerA.GetLength(1), A.GetLength(1));
+            Assert.AreEqual(answerB.GetLength(0), B.GetLength(0));
+            Assert.AreEqual(answerB.GetLength(1), B.GetLength(1));
+            for (int i = 0; i < A.GetLength(0); i++)
+                for (int j = 0; j < A.GetLength(1); j++)
+                    Assert.AreEqual(answerA[i, j], A[i, j]);
+            for (int i = 0; i < B.GetLength(0); i++)
+                for (int j = 0; j < B.GetLength(1); j++)
+                    Assert.AreEqual(answerB[i, j], B[i, j]);
+        }
+
+        [TestMethod()]
+        public void Task_3_28aTest()
+        {
+            // Arrange
+            int[] A = new int[7], B = new int[7];
+            int[] C = new int[6], D = new int[6];
+            Array.Copy(arr7, A, A.Length);
+            Array.Copy(arr7b, B, B.Length);
+            Array.Copy(arr6, C, C.Length);
+            Array.Copy(arr6b, D, D.Length);
+            int answerA = 0, answerB = 1, answerC = 0, answerD = -1,
+                resultA = 0, resultB = 0, resultC = 0, resultD = 0;
+            // Act
+            main.Task_3_28a(A, B, ref resultA, ref resultB);
+            main.Task_3_28a(C, D, ref resultC, ref resultD);
+            // Assert
+            Assert.AreEqual(answerA, resultA);
+            Assert.AreEqual(answerB, resultB);
+            Assert.AreEqual(answerC, resultC);
+            Assert.AreEqual(answerD, resultD);
+        }
+
+        [TestMethod()]
+        public void Task_3_28cTest()
+        {
+            // Arrange
+            int[] A = new int[7], B = new int[7];
+            int[] C = new int[6], D = new int[6];
+            Array.Copy(arr7, A, A.Length);
+            Array.Copy(arr7b, B, B.Length);
+            Array.Copy(arr6, C, C.Length);
+            Array.Copy(arr6b, D, D.Length);
+            int[] answerAi = new int[2] { 0, 2 }, answerAd = new int[2] { 2, 4 }, answerBi = new int[2] { 0, 6 }, answerBd = new int[2] { 0, 0 },
+                resultAi = null, resultAd = null, resultBi = null, resultBd = null;
+            // Act
+            main.Task_3_28c(A, B, ref resultAi, ref resultAd, ref resultBi, ref resultBd);
+            // Assert
+            Assert.AreEqual(answerAi.Length, resultAi.Length);
+            Assert.AreEqual(answerAd.Length, resultAd.Length);
+            Assert.AreEqual(answerBi.Length, resultBi.Length);
+            Assert.AreEqual(answerBd.Length, resultBd.Length);
+            for (int i = 0; i < answerAi.Length; i++)
+                Assert.AreEqual(answerAi[i], resultAi[i]);
+            for (int i = 0; i < answerAd.Length; i++)
+                Assert.AreEqual(answerAd[i], resultAd[i]);
+            for (int i = 0; i < answerBi.Length; i++)
+                Assert.AreEqual(answerBi[i], resultBi[i]);
+            for (int i = 0; i < answerBd.Length; i++)
+                Assert.AreEqual(answerBd[i], resultBd[i]);
+        }
+        [TestMethod()]
+        public void Task_4Test()
+        {
+            // Arrange
+            double[,] matrix = {
+            {2, 1, -1},
+            {1, -1, 1},
+            {-1, 1, 2}};
+            double[,] matrix2 = {
+            {5, 1, 2, 1},
+            {1, 6, 2, 3},
+            {2, 2, 7, 2},
+            {1, 3, 2, 8}};
+            double[,] answerMatrixU = {
+            {2, 1, -1},
+            {0, -1.5, 1.5},
+            {0, 0, 3}};
+            double[,] answerMatrixL = {
+            {3, 0, 0},
+            {1.5, -1.5, 0},
+            {-1, 1, 2}};
+            double[,] answerMatrixD = {
+            {3, 0, 0},
+            {0, 1.73205081, 0},
+            {0, 0, -1.73205081}};
+            double[,] answerMatrix2U = {
+            {5, 1, 2, 1},
+            {0, 5.8, 0, 0},
+            {0, 0, 5.75862069, 0},
+            {0, 0, 0, 6.32934132}};
+            double[,] answerMatrix2L = {
+            {4.38589, 0, 0, 0},
+            {0.28846, 4.63462, 0, 0},
+            {1.75, 1.25, 6.5, 0},
+            {1, 3, 2, 8}};
+            double[,] answerMatrix2D = {
+            {3.68246276, 1, 2, 1},
+            {0, 3.81689352, 0, 0},
+            {0, 0, 6.03054834, 0},
+            {0, 0, 0, 12.47009537}};
+            // Act
+            var rand = new Random().Next(7);
+            switch (rand)
+            {
+                case 0:
+                    main.Task_4(matrix, 0); break;
+                case 1:
+                    main.Task_4(matrix, 1); break;
+                case 2:
+                    main.Task_4(matrix, 2); break;
+                case 3:
+                    main.Task_4(matrix2, 0); break;
+                case 4:
+                    main.Task_4(matrix2, 1); break;
+                case 5:
+                    main.Task_4(matrix2, 2); break;
+            }
+            // Assert
+
+            Assert.AreEqual(matrix.GetLength(0), answerMatrixD.GetLength(0));
+            Assert.AreEqual(matrix.GetLength(1), answerMatrixD.GetLength(1));
+            Assert.AreEqual(matrix2.GetLength(0), answerMatrix2D.GetLength(0));
+            Assert.AreEqual(matrix2.GetLength(1), answerMatrix2D.GetLength(1));
+            switch (rand)
+            {
+                case 0:
+                    for (int i = 0; i < matrix.GetLength(0); i++)
+                        for (int j = 0; j < matrix.GetLength(1); j++)
+                            Assert.AreEqual(answerMatrixU[i, j], matrix[i, j], 0.00005);
+                    break;
+                case 1:
+                    for (int i = 0; i < matrix.GetLength(0); i++)
+                        for (int j = 0; j < matrix.GetLength(1); j++)
+                            Assert.AreEqual(answerMatrixL[i, j], matrix[i, j], 0.00005);
+                    break;
+                case 2:
+                    for (int i = 0; i < matrix.GetLength(0); i++)
+                        for (int j = 0; j < matrix.GetLength(1); j++)
+                            Assert.AreEqual(answerMatrixD[i, j], matrix[i, j], 0.00005);
+                    break;
+                case 3:
+                    for (int i = 0; i < matrix2.GetLength(0); i++)
+                        for (int j = 0; j < matrix2.GetLength(1); j++)
+                            Assert.AreEqual(answerMatrix2U[i, j], matrix2[i, j], 0.00005);
+                    break;
+                case 4:
+                    for (int i = 0; i < matrix2.GetLength(0); i++)
+                        for (int j = 0; j < matrix2.GetLength(1); j++)
+                            Assert.AreEqual(answerMatrix2L[i, j], matrix2[i, j], 0.00005);
+                    break;
+                case 5:
+                    for (int i = 0; i < matrix2.GetLength(0); i++)
+                        for (int j = 0; j < matrix2.GetLength(1); j++)
+                            Assert.AreEqual(answerMatrix2D[i, j], matrix2[i, j], 0.00005);
+                    break;
+            }
+        }
+
     }
 }
