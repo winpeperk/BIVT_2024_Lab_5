@@ -95,7 +95,7 @@ namespace Tests
             long actual, expected = 1;
             // Act
             actual = main.Task_1_1(n, k);
-            if (k == 0 || k == n) expected = 1;
+            if (k == 0 || k > 0 && k == n) expected = 1;
             else if (k > 0 && k < n)
             {
                 do
