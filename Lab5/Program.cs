@@ -534,18 +534,21 @@ public class Program
     }
     #endregion
     #region bonus part
-    public void Task_4(double[,] matrix, int index)
+    public double[,] Task_4(double[,] matrix, int index)
     {
-        // MatrixConverter[] mc = new MatrixConverter[3]; - uncomment me
+        // MatrixConverter[] mc = new MatrixConverter[4]; - uncomment me
 
         // code here
 
         // create public delegate MatrixConverter(matrix);
         // create and use method ToUpperTriangular(matrix);
         // create and use method ToLowerTriangular(matrix);
-        // create and use method ToDiagonal(matrix,);
+        // create and use method ToLeftDiagonal(matrix); - start from the left top angle
+        // create and use method ToRightDiagonal(matrix); - start from the right bottom angle
 
         // end
+
+        return matrix;
     }
     #endregion
 }
