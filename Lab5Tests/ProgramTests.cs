@@ -1687,6 +1687,7 @@ namespace Tests
             for (int i = 0; i < answerBd.Length; i++)
                 Assert.AreEqual(answerBd[i], resultBd[i]);
         }
+        
         [TestMethod()]
         public void Task_4Test()
         {
@@ -1775,9 +1776,6 @@ namespace Tests
                 for (int j = 0; j < output.GetLength(1); j++)
                     Assert.AreEqual(answer[i, j], output[i, j], 0.00005);
         }
-
-    }
-}
 
     }
 }
