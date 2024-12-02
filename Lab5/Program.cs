@@ -85,7 +85,7 @@ public class Program
         // code here
 
         // create and use FindMaxIndex(array);
-        // only 1 array have to be changed!
+        // only 1 array has to be changed!
 
         // end
     }
