@@ -5,6 +5,7 @@ using System.Data.Common;
 using System.Numerics;
 using System.Reflection;
 using System.Reflection.Metadata;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -625,37 +626,29 @@ public class Program
 
         // use RemoveColumn(matrix, columnIndex); from 2_10
 
-        for(int j = 0, counterZero = 0; j < A.GetLength(1); j++, counterZero = 0)
-        {
-            for(int i = 0;  i < A.GetLength(0); i++)
-            {
-                if (A[i, j] == 0) counterZero++;
-            }
-
-            if (counterZero == 0)
-            {
-                A = RemoveColumn(A, j);
-                j--;
-            }
-        }
-
-        for (int j = 0, counterZero = 0; j < B.GetLength(1); j++, counterZero = 0)
-        {
-            for (int i = 0; i < B.GetLength(0); i++)
-            {
-                if (B[i, j] == 0) counterZero++;
-            }
-
-            if (counterZero == 0)
-            {
-                B = RemoveColumn(B, j);
-                j--;
-            }
-        }
+       A = RemoveAllColumns(A);
+       B = RemoveAllColumns(B);
 
         // end
     }
+    public static int[,] RemoveAllColumns(int[,] matrix)
+    {
+        for (int j = 0, counterZero = 0; j < matrix.GetLength(1); j++, counterZero = 0)
+        {
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                if (matrix[i, j] == 0) counterZero++;
+            }
 
+            if (counterZero == 0)
+            {
+                matrix = RemoveColumn(matrix, j);
+                j--;
+            }
+        }
+
+        return matrix;
+    }
     public void Task_2_21(int[,] A, int[,] B, out int[] answerA, out int[] answerB)
     {
         answerA = null;
@@ -845,54 +838,37 @@ public class Program
         // use FindSequence(array, A, B); from Task_2_28a or entirely Task_2_28a
         // A and B - start and end indexes of elements from array for search
 
-        int length = 0;
-        for (int i = 0; i < first.Length; i++)
-        {
-            for (int j = i + 1; j < first.Length; j++)
-            {
-                if (FindSequence(first, i, j) != 0) length++;
-            }
-        }
-
-        answerFirst = new int[length, 2];
-        int index = 0;
-
-        for (int i = 0; i < first.Length; i++)
-        {
-            for (int j = i + 1; j < first.Length; j++)
-            {
-                if (FindSequence(first, i, j) != 0)
-                {
-                    (answerFirst[index, 0], answerFirst[index, 1]) = (i, j);
-                    index++;
-                };
-            }
-        }
-
-        length = 0;
-        for (int i = 0; i < second.Length; i++)
-        {
-            for (int j = i + 1; j < second.Length; j++)
-            {
-                if (FindSequence(second, i, j) != 0) length++;
-            }
-        }
-
-        answerSecond = new int[length, 2];
-        index = 0;
-        for (int i = 0; i < second.Length; i++)
-        {
-            for (int j = i + 1; j < second.Length; j++)
-            {
-                if (FindSequence(second, i, j) != 0)
-                {
-                    (answerSecond[index, 0], answerSecond[index, 1]) = (i, j);
-                    index++;
-                };
-            }
-        }
+        answerFirst = FindAllIntervals(first);
+        answerSecond = FindAllIntervals(second);
 
         // end
+    }
+    public static int[,] FindAllIntervals(int[] array)
+    {
+        int length = 0;
+        for (int i = 0; i < array.Length; i++)
+        {
+            for (int j = i + 1; j < array.Length; j++)
+            {
+                if (FindSequence(array, i, j) != 0) length++;
+            }
+        }
+
+        int[,] intervals = new int[length, 2];
+        int index = 0;
+
+        for (int i = 0; i < array.Length; i++)
+        {
+            for (int j = i + 1; j < array.Length; j++)
+            {
+                if (FindSequence(array, i, j) != 0)
+                {
+                    (intervals[index, 0], intervals[index, 1]) = (i, j);
+                    index++;
+                };
+            }
+        }
+        return intervals;
     }
     public void Task_2_28c(int[] first, int[] second, ref int[] answerFirst, ref int[] answerSecond)
     {
@@ -900,35 +876,28 @@ public class Program
 
         // use FindSequence(array, A, B); from Task_2_28a or entirely Task_2_28a or Task_2_28b
         // A and B - start and end indexes of elements from array for search
+
+        answerFirst = FindTheLongestInterval(first);
+        answerSecond = FindTheLongestInterval(second);
         
-        answerFirst = new int[]{ 0, 1 };
-
-        for (int i = 0; i < first.Length; i++)
-        {
-            for (int j = i + 1; j < first.Length; j++)
-            {
-                if (FindSequence(first, i, j) != 0)
-                {
-                    if (j - i > answerFirst[1] - answerFirst[0])
-                        (answerFirst[1], answerFirst[0]) = (j, i);
-                };
-            }
-        }
-
-        answerSecond = new int[2] { 0, 1 };
-
-        for (int i = 0; i < second.Length; i++)
-        {
-            for (int j = i + 1; j < second.Length; j++)
-            {
-                if (FindSequence(second, i, j) != 0)
-                {
-                    if (j - i > answerSecond[1] - answerSecond[0])
-                        (answerSecond[1], answerSecond[0]) = (j, i);
-                };
-            }
-        }
         // end
+    }
+    public static int[] FindTheLongestInterval(int[] array)
+    {
+        int[] answer = new int[] { 0, 1 };
+
+        for (int i = 0; i < array.Length; i++)
+        {
+            for (int j = i + 1; j < array.Length; j++)
+            {
+                if (FindSequence(array, i, j) != 0)
+                {
+                    if (j - i > answer[1] - answer[0])
+                        (answer[1], answer[0]) = (j, i);
+                };
+            }
+        }
+        return answer;
     }
     #endregion
     #region Level 3
